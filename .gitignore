@@ -9,6 +9,7 @@
 # Intellij
 *.iml
 idea/
+.idea/
 
 # NetBeans
 nbactions.xml

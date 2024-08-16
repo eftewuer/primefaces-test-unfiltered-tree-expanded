@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
     <h:head>
@@ -13,11 +9,20 @@
         <h:outputStylesheet name="test.css" />
     </h:head>
     <h:body>
+        <div class="card">
+            <p:remoteCommand name="onFilterComplete" action="#{testView.filterComplete}"/>
+            <p:remoteCommand name="updateTreeCommand" update="myform:mytree" />
+            <h:form id="myform">
+                <p:tree  id="mytree" value="#{testView.root}" var="node" filterFunction="#{testView.customFilter}"
+                         binding="#{testView.tree}" filterEvent="enter">
 
-        <h1>#{testView.string}</h1>
-        <h:form id="frmTest">
-            
-        </h:form>
+                    <p:ajax event="filter" listener="#{testView.onFilter}" oncomplete="onFilterComplete();"/>
 
+                    <p:treeNode>
+                        <h:outputText value="#{node}"/>
+                    </p:treeNode>
+                </p:tree>
+            </h:form>
+        </div>
     </h:body>
 </html>
