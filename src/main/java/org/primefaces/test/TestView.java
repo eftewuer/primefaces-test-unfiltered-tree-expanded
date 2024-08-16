@@ -1,6 +1,7 @@
 package org.primefaces.test;
 
 import lombok.Data;
+import org.primefaces.PrimeFaces;
 import org.primefaces.component.api.UITree;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
